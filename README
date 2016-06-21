@@ -1,6 +1,7 @@
 This set of jupyter notebooks is designed to work with the file
-     example1.fits
-which is assumed to be in this directory.
+    example1.fits
+which is assumed to be in this directory.  You can run them by initialising the LSST code, then
+    ipython jupyter &
 
 Start by looking at
     Image Processing.ipynb
