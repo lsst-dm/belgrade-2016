@@ -1,0 +1,44 @@
+This set of jupyter notebooks is designed to work with the file
+     example1.fits
+which is assumed to be in this directory.
+
+Start by looking at
+    Image Processing.ipynb
+which runs through processing a single image using the LSST codebase; there are (of course) command line
+scripts that wrap this up in a reasonably nice interface.  Jim Bosch will introduce you to them later.
+
+If you want to know more about the `Exposure' object that we use to represent the image look at
+    Exposures.ipynb
+
+The deblender isn't especially interesting for this shallow data (30s on the 8.2m Subaru telescope), but if
+you want to see what it does look at
+    Deblender.ipynb
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+The remaining notebooks illustrate ways to fiddle with configurations.
+
+The default PSF estimation uses a not-very-good version of the PCA code that I wrote for SDSS.  Running
+    PSF.ipynb
+explores how well this works, and shows what happens if we switch to using PSFex as the back-end.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+The
+    Tune Detection.ipynb
+notebook fiddles a bit with the detection algorithms; changing the thresholds, and enabling a feature that
+aggessively over-subtracts bright objects while detecting (which suppresses small things near big ones)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+For reasons that I don't understand the Kron code isn't distributed as part
+of the standard LSST stack (we'll fix this), but this provides the opportunity to illustrate the LSST plugin
+architecture.  To use the Kron code you'll have to clone code from github and build it:
+
+Initialise the LSST code, then:
+    git clone git@github.com:lsst/meas_extensions_photometryKron
+    setup -r . -j
+    scons -Q opt=3 -j 4
+then restart your jupyter server.  Then run the
+     Kron.ipynb
+notebook.
